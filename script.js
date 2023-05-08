@@ -3,49 +3,56 @@ let weapon = ['rock', 'paper', 'scissors'];
 //select random array element from weapon array
 function getComputerChoice() {
     computerChoice = weapon [ (Math.floor(Math.random() * weapon.length)) ];
-    //console.log(computerChoice);
     return computerChoice;
 }
 
-console.log(getComputerChoice());
-
-
-
-
 
 //play a single round of Rock Paper, Scissors. Make playerSelection parameter case insensitive.
-const playerSelection = "rock";
+
+
+//assign values to player selections
+const playerEntry = 'Rock';
+const playerSelection = playerEntry.toLowerCase();
 const computerSelection = getComputerChoice();
 
 
-function playRound(playerSelection, computerSelection) {
+//messages to return to player
+let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
+let youLoose = `You lose, ${computerSelection} beats ${playerSelection}`;
+let youDraw = `It's a draw!`;
 
-    let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
-    let youLoose = `You loose ${computerSelection} beats ${playerSelection}`;
-    let youDraw = `It's a draw!`;
+//create message array
+let message = [ youWin, youLose, youDraw];
 
-    if (playerSelection == computerSelection ) {
-        alert( youDraw );
-    } else if (playerSelection == "rock" && computerSelection == 'paper') {
-        alert( youLoose );
+
+//check what values are assigned to players
+console.log('player selection is      ', playerSelection);
+console.log('computer selection is    ',computerSelection);
+
+
+
+//game function
+function playRound() {
+    
+    if (playerSelection == computerSelection) {
+        return youDraw;
+    } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+        return youLose;
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        alert( youWin );
+        return youWin; 
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        alert( youWin );
+        return youWin;
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        alert( youLoose );
+        return youLose;
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        alert( youLoose );
-    }else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        alert( youWin );
+        return youLose;
+    } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        return youWin;
     } else {
-        alert('Great Game!');
+        return('Great game!')
     }
 }
 
-//console.log('player selection is', playerSelection);
-//console.log('computer selection is',computerSelection)
+console.log(playRound());
 
-//console.log( playRound( playerSelection, computerSelection ));
-//console.log(computerSelection);
 
