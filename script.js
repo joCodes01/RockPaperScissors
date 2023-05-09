@@ -1,37 +1,40 @@
+//write a program to play 'rock, paper, scissors' game against the computer
 
-let weapon = ['rock', 'paper', 'scissors'];
+
+//COMPUTER CHOICE- generate random choice of weapon
+let choice = ['rock', 'paper', 'scissors'];
 //select random array element from weapon array
 function getComputerChoice() {
-    computerChoice = weapon [ (Math.floor(Math.random() * weapon.length)) ];
+    computerChoice = choice [ (Math.floor(Math.random() * choice.length)) ];
     return computerChoice;
 }
 
 
-//play a single round of Rock Paper, Scissors. Make playerSelection parameter case insensitive.
+//USER CHOICE- collect user choice from prompt input
+function getPlayerChoice() {
+    playerChoice = prompt('Choose your weapon', 'rock, paper or scissors?');
+    return playerChoice;
+}
 
 
-//assign values to player selections
-const playerEntry = 'Rock';
-const playerSelection = playerEntry.toLowerCase();
+//assign values to player variables 
+const playerSelection = getPlayerChoice().toLowerCase();
 const computerSelection = getComputerChoice();
 
 
 //messages to return to player
 let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
-let youLoose = `You lose, ${computerSelection} beats ${playerSelection}`;
+let youLose = `You lose, ${computerSelection} beats ${playerSelection}`;
 let youDraw = `It's a draw!`;
-
-//create message array
-let message = [ youWin, youLose, youDraw];
 
 
 //check what values are assigned to players
-console.log('player selection is      ', playerSelection);
-console.log('computer selection is    ',computerSelection);
+//console.log('player selection is      ', playerSelection);
+//console.log('computer selection is    ',computerSelection);
 
 
 
-//game function
+//function to play one round
 function playRound() {
     
     if (playerSelection == computerSelection) {
@@ -53,6 +56,22 @@ function playRound() {
     }
 }
 
-console.log(playRound());
+//check result of function
+//console.log(playRound());
+
+
+//function to play five rounds and report player as winner or loser at the end
+function game() {
+
+     //check player selections
+     console.log('player ', playerSelection);
+     console.log('computer ', computerSelection);
+
+     //play a round of the game
+     playRound(playerSelection, computerSelection);
+     return playRound();
+}
+  
+console.log(game());
 
 
