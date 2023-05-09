@@ -26,52 +26,65 @@ const computerSelection = getComputerChoice();
 let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
 let youLose = `You lose, ${computerSelection} beats ${playerSelection}`;
 let youDraw = `It's a draw!`;
+//put message options into an array
+let message = [ youWin, youLose, youDraw];
 
 
-//check what values are assigned to players
-//console.log('player selection is      ', playerSelection);
-//console.log('computer selection is    ',computerSelection);
+//check code: what values are assigned to players?
+console.log('player selection is      ', playerSelection);
+console.log('computer selection is    ',computerSelection);
 
+//make global player score variables
+let playerScore = 0;
+let computerScore = 0;
 
 
 //function to play one round
 function playRound() {
     
-    if (playerSelection == computerSelection) {
+      if (playerSelection == computerSelection) {
         return youDraw;
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        return youLose;
+        computerScore = computerScore++;
+        return message[1]; //you lose
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        return youWin; 
+        playerScore ++;
+        return message[0]; //you win
     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        return youWin;
+        playerScore ++;
+        return message[0]; //you win
     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        return youLose;
+        computerScore ++;
+        return message[1]; //you lose
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        return youLose;
+        computerScore ++;
+        return message[1]; //you lose
     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        return youWin;
+        playerScore ++;
+        return message[0]; //you win
     } else {
-        return('Great game!')
+        return('oops! Type rock, paper or scissors!')
     }
 }
-
-//check result of function
-//console.log(playRound());
 
 
 //function to play five rounds and report player as winner or loser at the end
 function game() {
 
-     //check player selections
-     console.log('player ', playerSelection);
-     console.log('computer ', computerSelection);
+     //check code: what values are assigned to player selections?
+     //console.log('player ', playerSelection);
+     //console.log('computer ', computerSelection);
 
-     //play a round of the game
-     playRound(playerSelection, computerSelection);
+     playRound();
+     playRound();
+     playRound();
+     playRound();
+     playRound();
+    
      return playRound();
 }
   
 console.log(game());
 
-
+console.log(computerScore);
+console.log(playerScore);
