@@ -10,29 +10,12 @@ function getComputerChoice() {
 }
 
 
-//USER CHOICE- collect user choice from prompt input
+//USER CHOICE- assign user choice from prompt input
 function getPlayerChoice() {
     playerChoice = prompt('Choose your weapon', 'rock, paper or scissors?');
-    return playerChoice;
+    return playerChoice.toLowerCase();;
 }
 
-
-//assign values to player variables 
-const playerSelection = getPlayerChoice().toLowerCase();
-const computerSelection = getComputerChoice();
-
-
-//messages to return to player
-let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
-let youLose = `You lose, ${computerSelection} beats ${playerSelection}`;
-let youDraw = `It's a draw!`;
-//put message options into an array
-let message = [ youWin, youLose, youDraw];
-
-
-//check code: what values are assigned to players?
-console.log('player selection is      ', playerSelection);
-console.log('computer selection is    ',computerSelection);
 
 //make global player score variables
 let playerScore = 0;
@@ -41,11 +24,27 @@ let computerScore = 0;
 
 //function to play one round
 function playRound() {
-    
+    //getComputerChoice();
+    //getPlayerChoice();
+
+    let playerSelection = getPlayerChoice();
+    let computerSelection = getComputerChoice();
+
+    console.log('player ', playerSelection);
+    console.log('computer ', computerSelection);
+
+    //message to return to player
+    let youWin = `You win, ${playerSelection} beats ${computerSelection}`;
+    let youLose = `You lose, ${computerSelection} beats ${playerSelection}`;
+    let youDraw = `It's a draw!`;
+    //put message options into an array
+    let message = [ youWin, youLose, youDraw];
+
+
       if (playerSelection == computerSelection) {
         return youDraw;
     } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        computerScore = computerScore++;
+        computerScore++;
         return message[1]; //you lose
     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
         playerScore ++;
@@ -65,26 +64,32 @@ function playRound() {
     } else {
         return('oops! Type rock, paper or scissors!')
     }
+    
 }
 
 
 //function to play five rounds and report player as winner or loser at the end
 function game() {
 
-     //check code: what values are assigned to player selections?
-     //console.log('player ', playerSelection);
-     //console.log('computer ', computerSelection);
+     console.log(playRound());
+     console.log(playRound());
+     console.log(playRound());
+     console.log(playRound());
+     console.log(playRound());
 
-     playRound();
-     playRound();
-     playRound();
-     playRound();
-     playRound();
-    
-     return playRound();
+     if (playerScore > computerScore) {
+        return 'You win this round';
+    } else if (playerScore < computerScore) {
+        return 'You lose this round'; 
+    } else if (playerScore == computerScore) {
+        'It\'s a draw!'; 
+     } else {
+        return 'Oops, something went wrong. Try again.'
+    }
 }
-  
-console.log(game());
 
-console.log(computerScore);
-console.log(playerScore);
+
+console.log(game());
+console.log('player score result ', playerScore);
+console.log('computer score result ',computerScore);
+
